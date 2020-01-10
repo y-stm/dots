@@ -120,13 +120,13 @@ export PROMPT=$(echo ${_line1}; echo ${_line2})
 #### PATH
 # `-EOF` is used for here documents ignoreing heading spaces.
 local _PATH=$(tr $IFS ':' <<-EOF
-      ${PATH}/bin
-      ${PATH}/.local/bin
-      ${PATH}/.cargo/bin
-      ${PATH}/.luna/bin
-      ${PATH}/.roswell/bin
-      ${PATH}/.npm-global/bin
-      ${PATH}/.yarn/bin
+      ${HOME}/bin
+      ${HOME}/.local/bin
+      ${HOME}/.cargo/bin
+      ${HOME}/.luna/bin
+      ${HOME}/.roswell/bin
+      ${HOME}/.npm-global/bin
+      ${HOME}/.yarn/bin
 EOF
       )
 # $_PATH contains : at last, so no : required to concat $PATH
