@@ -1,4 +1,4 @@
-# -*- orgstruct-heading-prefix-regexp: "####" -*-
+# -*- outline-minor-mode-prefix: "####" -*-
 # zshrc : ログインシェル、インタラクティブシェル起動時に実行
 
 # 大体の設定は/etc/zsh/zshrcで行われている
@@ -131,13 +131,15 @@ EOF
       )
 # $_PATH contains : at last, so no : required to concat $PATH
 export PATH=$_PATH$PATH
-
+#### EDITOR
+export EDITOR='/usr/bin/emacsclient -nw'
 #### alias
 alias ls='ls --color=auto'
 alias less='less -R'
 alias pacman='pacman --color=auto'
 alias yay='yay --color=auto'
 alias config='/usr/bin/git --git-dir=${HOME}/dots --work-tree=${HOME}'
+alias em='emacsclient -nw'
 
 #### misc
 # dircolor
