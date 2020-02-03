@@ -1,0 +1,4 @@
+= My dot files
+
+== How to configure
+`git clone --git-dir=~/dots --work-tree=~/ https://github.com/y-stm/dots/new/master`
