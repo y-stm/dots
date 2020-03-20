@@ -1,0 +1,65 @@
+# kakoune rc
+
+# TODO
+# -----------------------------------
+# * Understand user mode
+# * Implement mapleader-like vim
+# * Understand hook
+
+# MEMO
+# 1. "," is for user-mode key
+# Highlighter
+# -----------------------------------
+# line number
+add-highlighter global/ number-lines
+
+# kak-lsp
+# -----------------------------------
+# (requires kak-lsp installed)
+eval %sh{kak-lsp --kakoune -s $kak_session}
+lsp-enable
+
+# search highlighter
+add-highlighter global/ show-matching
+# add-highlighter global/ show-whitespaces
+
+# Appearance
+# -----------------------------------
+# Colorscheme
+# -----------------------------------
+colorscheme tommorow-night
+# Tabstop
+set-option global tabstop 4
+
+# Copy & Paste Setting
+# -----------------------------------
+# paste from xsel
+map global user p '<a-!>xsel --output --clipboard<ret>' -docstring 'Paste from xsel onto the cursor'
+map global user P '!xsel --output --clipboard<ret>' -docstring 'Paste from xsel into the next of cursor'
+
+
+# yank to xsel
+hook global NormalKey y|d|c %{ nop %sh{
+  printf %s "$kak_main_reg_dquote" | xsel --input --clipboard
+}}
+
+# Keymap
+# -----------------------------------
+# jj to <esc>
+hook global InsertChar j %{ try %{
+    exec -draft hH <a-k>jj<ret> d
+    exec <esc>
+}}
+
+# <C-a> and <C-e> move to head|tail
+map global normal <c-a> <a-h>
+map global normal <c-e> <a-l>
+
+
+
+# -----------------------------------
+# .pgsql filetype to .sql
+hook global BufCreate .*/pgsql %{
+    set-option buffer filetype sql
+}
+
