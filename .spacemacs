@@ -32,7 +32,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(asciidoc
+   '(python
+     asciidoc
      rust
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -506,7 +507,18 @@ before packages are loaded."
   (setq browse-url-browser-function 'eww-browse-url)
   (require 'outshine)
   (add-hook 'outshine-minor-mode-hook 'outshine-hook-function)
-  (defvar outline-minor-mode-prefix "\M-#"))
+  (add-hook 'prog-mode-hook 'outline-minor-mode)
+  (setq outline-minor-mode-prefix "\C-c")
+  (spacemacs/set-leader-keys
+    ;; Narrowing
+    "nn" 'outshine-narrow-to-subtree
+    "nw" 'widen
 
-;; Do not write anything past this comment. This is where Emacs will
+    ;; Structural edits
+    "nj" 'outline-move-subtree-down
+    "nk" 'outline-move-subtree-up
+    "nh" 'outline-promote
+    "nl" 'outline-demote))
+
+;; Do Not Write Anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
